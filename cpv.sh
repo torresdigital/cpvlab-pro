@@ -58,10 +58,10 @@ function log() {
 function usage() {
     cat << EOF
 
-    Usage: $SCR_FULL_NAME -d <domain.name> -e <your@email.com> -a <your_api_key>
+    Usage: $SCR_FULL_NAME -d app.clictrack.com -e contato.clictrack.com -a <your_api_key>
 
     Required:
-        -d <domain name> Domain name
+        -d app.clictrack.com Domain name
 
     Optional: 
         -h Display help
@@ -187,10 +187,10 @@ sed -i -e "s|{{cpvlabpro-install-domain}}|https://$DOMAIN|g" $FOLDER/cpvlabpro-d
 mysql $DBNAME < $FOLDER/cpvlabpro-db.sql
 log "Imported database schema" m
 # Update db_params.php file with database settings
-sed -i -e "s|yourhost|localhost|" $FOLDER/lib/db_params.php >> $LOG_FILE 2>&1
-sed -i -e "s|yourdatabase|$DBNAME|" $FOLDER/lib/db_params.php >> $LOG_FILE 2>&1
-sed -i -e "s|youruser|$DBUSER|" $FOLDER/lib/db_params.php >> $LOG_FILE 2>&1
-sed -i -e "s|yourpassword|$DBPASS|" $FOLDER/lib/db_params.php >> $LOG_FILE 2>&1
+sed -i -e "s|localhost|" $FOLDER/lib/db_params.php >> $LOG_FILE 2>&1
+sed -i -e "s|ioncube|$DBNAME|" $FOLDER/lib/db_params.php >> $LOG_FILE 2>&1
+sed -i -e "s|ioncube|$DBUSER|" $FOLDER/lib/db_params.php >> $LOG_FILE 2>&1
+sed -i -e "s|@2root.tk|$DBPASS|" $FOLDER/lib/db_params.php >> $LOG_FILE 2>&1
 log "CPVLab database settings updated " m
 # update license file with registered email
 sed -i -e "s|youremail|$EMAIL|" $FOLDER/license/license.php >> $LOG_FILE 2>&1
